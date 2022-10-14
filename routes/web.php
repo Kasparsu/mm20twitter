@@ -22,7 +22,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PublicController::class, 'home']);
 Route::post('/tweets', [TweetController::class, 'store'])->middleware('auth');
 Route::get('/user/{username}', [HomeController::class, 'index']);
+Route::get('/user/{username}/follow', [HomeController::class, 'follow']);
+
 Route::get('/tweet/{tweet}', [TweetController::class, 'show']);
+Route::get('/tweet/{tweet}/delete', [TweetController::class, 'destroy']);
 Route::post('/tweet/{tweet}', [ReplyController::class, 'store']);
 Route::get('/tweet/{tweet}/like', [LikeController::class, 'like']);
 Route::get('/tweet/{tweet}/retweet', [TweetController::class, 'retweet']);

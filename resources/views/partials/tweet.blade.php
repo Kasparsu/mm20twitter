@@ -30,7 +30,10 @@
             <a href="/tweet/{{$tweet->id}}" class="card-footer-item">Reply {{$tweet->replies()->count()}}</a>
         @endunless
         <a href="/tweet/{{$tweet->id}}/like" class="card-footer-item">Like {{$tweet->likes()->count()}}</a>
-        <a href="/tweet/{{$tweet->id}}/retweet" class="card-footer-item">Retweet</a>
+        <a href="/tweet/{{$tweet->id}}/retweet" class="card-footer-item">Retweet</a><a href="/tweet/{{$tweet->id}}/retweet" class="card-footer-item">Retweet</a>
+        @if($tweet->user->id === Auth::user()->id)
+            <a href="/tweet/{{$tweet->id}}/delete" class="card-footer-item has-text-danger">Delete</a>
+        @endif
     </footer>
 </div>
 
