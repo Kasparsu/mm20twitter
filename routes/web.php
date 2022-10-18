@@ -5,6 +5,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ReplyController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\TweetController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,5 +32,5 @@ Route::get('/tweet/{tweet}/like', [LikeController::class, 'like']);
 Route::get('/tweet/{tweet}/retweet', [TweetController::class, 'retweet']);
 Route::get('/profile', [ProfileController::class, 'edit']);
 Route::post('/profile', [ProfileController::class, 'update']);
-
+Route::get('/tag/{tag}', [TagController::class, 'index']);
 Auth::routes();

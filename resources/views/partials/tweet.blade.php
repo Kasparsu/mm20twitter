@@ -20,7 +20,9 @@
         </a>
         <div class="content">
             {{$tweet->content}}
-            <a href="#">#css</a> <a href="#">#responsive</a>
+            @foreach($tweet->tags as $tag)
+                <a href="/tag/{{$tag->id}}">#{{$tag->name}}</a>
+            @endforeach
             <br>
             <time datetime="2016-1-1">{{$tweet->created_at->diffForHumans()}}</time>
         </div>
@@ -31,9 +33,11 @@
         @endunless
         <a href="/tweet/{{$tweet->id}}/like" class="card-footer-item">Like {{$tweet->likes()->count()}}</a>
         <a href="/tweet/{{$tweet->id}}/retweet" class="card-footer-item">Retweet</a><a href="/tweet/{{$tweet->id}}/retweet" class="card-footer-item">Retweet</a>
-        @if($tweet->user->id === Auth::user()->id)
-            <a href="/tweet/{{$tweet->id}}/delete" class="card-footer-item has-text-danger">Delete</a>
-        @endif
+        @auth
+            @if($tweet->user->id === Auth::user()->id)
+                <a href="/tweet/{{$tweet->id}}/delete" class="card-footer-item has-text-danger">Delete</a>
+            @endif
+        @endauth
     </footer>
 </div>
 
